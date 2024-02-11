@@ -1,0 +1,83 @@
+[[general]]
+name = "simple_game"
+kind = "macro"
+type = "simple_game!(name, state?, config?, setup?, update?)"
+description = "Setup a simple game. If you need some state, pass in your struct as `state`, which will be passed as `self`. The [implementation](https://docs.rs/comfy/latest/src/comfy/macros.rs.html#45-143) is easy to understand."
+short = "Simple game setup"
+
+[[general]]
+name = "GLOBAL_STATE"
+kind = "static"
+type = """
+// A static instance of the following:
+
+pub struct GlobalState {
+    pub mouse_wheel: (f32, f32),
+    pub mouse_position: Vec2,
+    pub mouse_rel: IVec2,
+    pub mouse_world: Vec2,
+    pub mouse_locked: bool,
+    pub egui_scale_factor: f32,
+    pub frame: u32,
+    pub fps: i32,
+    pub mesh_queue: Vec<MeshDraw>,
+    pub text_queue: Vec<DrawText>,
+    pub clear_color: Color,
+    pub screen_size: Vec2,
+    pub pressed: HashSet<KeyCode>,
+    pub just_pressed: HashSet<KeyCode>,
+    pub just_released: HashSet<KeyCode>,
+    pub mouse_pressed: HashSet<MouseButton>,
+    pub mouse_just_pressed: HashSet<MouseButton>,
+    pub mouse_just_released: HashSet<MouseButton>,
+    pub play_sound_queue: Vec<Sound>,
+    pub stop_sound_queue: Vec<Sound>,
+}
+"""
+description = """
+`comfy` adopts a simplified pattern wherein general information about the game state is held in this static variable.
+"""
+
+[[general]]
+name = "update"
+kind = "fn"
+show_url = false
+type = "update([&mut YourState], &mut EngineContext)"
+description = """
+This is your update loop, called with a mutable reference to whatever your state is (if you use any state), and a mutable reference to the current EngineContext.
+"""
+short = "Here goes your update logic."
+
+################ Shapes ##############################
+
+
+[[shapes]]
+name = "draw_circle"
+kind = "fn"
+type = "draw_circle(center: Vec2, r: f32, color: Color, z_index: i32)"
+description = "Draw a circle"
+short = "Draw a circle"
+
+[[shapes]]
+name = "draw_circle_outline"
+kind = "fn"
+type = "draw_circle_outline(center: Vec2, radius: f32, thickness: f32, color: Color, z_index: i32)"
+description = "Draw just the outline of a circle with specified thickness"
+short = "Draw a circle outline"
+
+
+############ Assets ############################
+
+
+[[assets]]
+name = "include_dir"
+kind = "macro"
+submodule = "include_dir"
+type = """// Example
+include_dir!("$CARGO_MANIFEST_DIR")
+"""
+description = """Embed an entire directory into your binary -- currently the recommended way to bundle assets. Work is underway to supplement this method for bigger assets (see [Roadmap](https://comfyengine.org/book/roadmap/)) but this is `comfy` enough.
+<br><br>
+See the [documentation](https://github.com/darthdeus/include_dir#getting-started) for the `include_dir` crate for a good example.
+"""
+short = "Embed a directory into your binary. Preferred for asset management."

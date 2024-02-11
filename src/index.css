@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+code {
+    @apply font-mono badge border-neutral badge-outline badge-lg;
+}
+
+a {
+    @apply text-accent;
+}
+

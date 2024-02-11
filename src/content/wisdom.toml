@@ -1,0 +1,12 @@
+general = """
+"""
+
+shapes = """
+Collection of functions to draw basic shapes to the screen. Remember that the global game state is held in `GLOBAL_STATE` so one does not need to pass in the context explicitly.
+<br><br>
+**Note:** Rendering functions in `comfy` accept a `z-index`. Objects with higher `z-index` are drawn above those with lower `z-index`. This feature removes the issue of carefully ordering render calls.
+"""
+
+assets = """
+
+"""
